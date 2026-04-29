@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Add Note</h2>
+
+<form method="POST">
+
+    <input name="title" placeholder="Title" required>
+    <textarea name="content" placeholder="Content" required></textarea>
+
+    <label>
+        <input type="checkbox" name="is_private">
+        Private 🔒
+    </label>
+
+    <input type="password" name="password" placeholder="Password (optional)">
+
+    <button type="submit">Save</button>
+
+</form>
+
+{% endblock %}

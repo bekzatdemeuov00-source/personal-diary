@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<a href="/add" class="btn">+ Add Note</a>
+
+{% for note in notes %}
+<a class="card" href="/view/{{ note[0] }}">
+
+    <h3>
+        {% if note[4] == 1 %}
+            🔒 {{ note[1] }}
+        {% else %}
+            {{ note[1] }}
+        {% endif %}
+    </h3>
+
+    <p>{{ note[2][:100] }}...</p>
+
+</a>
+{% endfor %}
+
+{% endblock %}

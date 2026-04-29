@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card full">
+
+    <h2>{{ note[1] }}</h2>
+    <p>{{ note[2] }}</p>
+
+    <a href="/edit/{{ note[0] }}" class="btn">Edit</a>
+    <a href="/delete/{{ note[0] }}" class="btn danger">Delete</a>
+
+</div>
+
+{% endblock %}
