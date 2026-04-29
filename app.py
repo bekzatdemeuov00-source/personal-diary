@@ -14,6 +14,7 @@ def init():
     conn = db()
     cur = conn.cursor()
 
+    # 📓 NOTES
     cur.execute("""
     CREATE TABLE IF NOT EXISTS notes(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -25,12 +26,24 @@ def init():
     )
     """)
 
+    # 📅 PLANS (NEW)
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS plans(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT,
+        description TEXT,
+        created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+    """)
+
     conn.commit()
     conn.close()
 
 
 init()
 
+
+# -------------------- 📓 NOTES --------------------
 
 @app.route("/")
 def index():
@@ -48,8 +61,14 @@ def add():
         title = request.form["title"]
         content = request.form["content"]
 
-        is_private = 1 if request.form.get("is_private") else 0
-        password = request.form.get("password", "")
+        password = request.form.get("password")
+        password = password.strip() if password else None
+
+        if password:
+            is_private = 1
+        else:
+            is_private = 0
+            password = None
 
         conn = db()
         conn.execute(
@@ -74,7 +93,9 @@ def view(id):
 
     conn.close()
 
-    # если приватная
+    if not note:
+        return "Note not found", 404
+
     if note[4] == 1:
         if request.method == "POST":
             if request.form["password"] == note[3]:
@@ -117,6 +138,46 @@ def delete(id):
     conn.commit()
     conn.close()
     return redirect("/")
+
+
+# -------------------- 📅 PLANS (NEW) --------------------
+
+@app.route("/plans")
+def plans():
+    conn = db()
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM plans ORDER BY created DESC")
+    plans = cur.fetchall()
+    conn.close()
+    return render_template("plans.html", plans=plans)
+
+
+@app.route("/add_plan", methods=["GET", "POST"])
+def add_plan():
+    if request.method == "POST":
+        title = request.form["title"]
+        description = request.form["description"]
+
+        conn = db()
+        conn.execute(
+            "INSERT INTO plans(title, description) VALUES(?,?)",
+            (title, description)
+        )
+        conn.commit()
+        conn.close()
+
+        return redirect("/plans")
+
+    return render_template("add_plan.html")
+
+
+@app.route("/delete_plan/<int:id>")
+def delete_plan(id):
+    conn = db()
+    conn.execute("DELETE FROM plans WHERE id=?", (id,))
+    conn.commit()
+    conn.close()
+    return redirect("/plans")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>➕ Add Plan</h1>
+
+<form method="POST">
+
+    <input name="title" placeholder="Plan title" required>
+    <br><br>
+
+    <textarea name="description" placeholder="Description"></textarea>
+    <br><br>
+
+    <button class="btn save" type="submit">💾 Save Plan</button>
+
+</form>
+
+<br>
+
+<a href="/plans" class="btn secondary">← Back</a>
+
+{% endblock %}

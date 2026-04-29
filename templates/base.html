@@ -10,12 +10,26 @@
 <body>
 
 <div class="topbar">
-    <h2>📓 Personal Diary</h2>
 
+    <!-- LEFT: NAVIGATION -->
+    <div class="nav">
+        <h2 style="margin:0;">
+            <a href="/" style="text-decoration:none; color:inherit;">
+                📓 Personal Diary
+            </a>
+        </h2>
+
+        <a href="/">Notes</a>
+        <a href="/plans">Plans</a>
+    </div>
+
+    <!-- RIGHT: ACTIONS -->
     <div class="actions">
         <button onclick="toggleTheme()" class="btn small">🌙 Theme</button>
-        <a href="/add" class="btn small">+ New</a>
+        <a href="/add" class="btn small">+ New Note</a>
+        <a href="/add_plan" class="btn small">+ Plan</a>
     </div>
+
 </div>
 
 <div class="container">

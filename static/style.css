@@ -12,16 +12,37 @@ body.dark {
     color: #eaeaea;
 }
 
-/* TOP BAR */
+/* TOPBAR */
 .topbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 18px 22px;
     background: #ffffff10;
     backdrop-filter: blur(10px);
     position: sticky;
     top: 0;
+    z-index: 10;
+}
+
+/* NAV */
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav a {
+    text-decoration: none;
+    color: inherit;
+    opacity: 0.7;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.nav a:hover {
+    opacity: 1;
+    transform: translateY(-1px);
 }
 
 /* CONTAINER */
@@ -58,24 +79,55 @@ body.dark .card {
     justify-content: space-between;
 }
 
-/* BUTTONS */
+/* BUTTON BASE */
 .btn {
     padding: 10px 14px;
     border-radius: 10px;
-    background: #111;
-    color: white;
     text-decoration: none;
     border: none;
     cursor: pointer;
+    display: inline-block;
+    transition: 0.2s;
+    font-weight: 500;
 }
 
+/* SAVE BUTTON (PRIMARY ACTION) */
+.btn.save {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.btn.save:hover {
+    transform: translateY(-2px);
+}
+
+/* DANGER */
+.btn.danger {
+    background: crimson;
+    color: white;
+}
+
+.btn.danger:hover {
+    transform: scale(1.05);
+}
+
+/* SECONDARY (BACK / HOME) */
+.btn.secondary {
+    background: #e0e0e0;
+    color: #111;
+}
+
+body.dark .btn.secondary {
+    background: #2a2f3a;
+    color: #eaeaea;
+}
+
+/* SMALL BUTTONS */
 .btn.small {
     padding: 8px 12px;
     font-size: 12px;
-}
-
-.btn.danger {
-    background: crimson;
 }
 
 /* INPUTS */
@@ -85,6 +137,13 @@ input, textarea {
     margin-top: 10px;
     border-radius: 10px;
     border: 1px solid #ccc;
+    outline: none;
+    transition: 0.2s;
+}
+
+input:focus, textarea:focus {
+    border-color: #4facfe;
+    box-shadow: 0 0 0 3px rgba(79,172,254,0.2);
 }
 
 body.dark input,
@@ -92,4 +151,31 @@ body.dark textarea {
     background: #111;
     color: white;
     border: 1px solid #333;
+}
+
+/* BADGE (for future plans status) */
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    background: #eee;
+}
+
+body.dark .badge {
+    background: #2a2f3a;
+}
+
+.btn.dark-save {
+    background: linear-gradient(135deg, #232526, #414345);
+    color: #ffffff;
+    font-weight: bold;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+}
+
+.btn.dark-save:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.35);
 }

@@ -2,22 +2,26 @@
 
 {% block content %}
 
-<h2>Add Note</h2>
+<h1>➕ Add Note</h1>
 
-<form method="POST">
+<form method="POST" class="form">
 
     <input name="title" placeholder="Title" required>
-    <textarea name="content" placeholder="Content" required></textarea>
-
-    <label>
-        <input type="checkbox" name="is_private">
-        Private 🔒
-    </label>
+    
+    <textarea name="content" placeholder="Write your note..." rows="6"></textarea>
 
     <input type="password" name="password" placeholder="Password (optional)">
 
-    <button type="submit">Save</button>
+    <br><br>
+
+    <button class="btn save dark-save" type="submit">
+        💾 Save Note
+    </button>
 
 </form>
+
+<br>
+
+<a href="/" class="btn secondary">← Back</a>
 
 {% endblock %}

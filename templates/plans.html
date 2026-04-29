@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>📅 Plans</h1>
+
+<a href="/add_plan" class="btn save">➕ New Plan</a>
+
+<hr>
+
+{% for plan in plans %}
+<div class="card">
+    <h3>{{ plan[1] }}</h3>
+    <p>{{ plan[2] }}</p>
+    <small>{{ plan[3] }}</small>
+    <br><br>
+    <a href="/delete_plan/{{ plan[0] }}" class="btn danger small">🗑 Delete</a>
+</div>
+{% endfor %}
+
+<br>
+<a href="/" class="btn secondary">← Home</a>
+
+{% endblock %}
